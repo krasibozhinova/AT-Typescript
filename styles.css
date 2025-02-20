@@ -1,42 +1,57 @@
-* {
-    margin: 0px;
-    padding: 0px;
+*  {
+    margin: 4px;
+    padding: 1px;
     }
     
     header {
-    background-color: black;
+        background-color: burlywood;
     }
     
     header nav {
-    text-align: center;
+        text-align: center;
     }
     
     header nav ul {
-    list-style-type: none;
+        list-style-type: none;
     }
     
     header nav ul li a{
-    text-decoration: none;
-    color: white;
+        text-decoration: none;
+        color: black;
     }
     
     main {
-    text-align: center;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 50px;
     }
     
     main .image-container img {
-    width: 250px;
-    height: 200px;
+        width: 250px;
+        height: 200px;
     }
-    main .description p {
-    width: 500px;
+
+    main .gif-container img {
+        width: 450px;
+    }
+
+    main .paragraph p {
+        text-align: justify;
+    }
+
+    main .learn-more button{
+        position: relative;
+        right: 850px;
+        text-align: center;
     }
     
     footer {
-    text-align: center;
-    background-color: black;
+        text-align: center;
+        background-color: burlywood;
     }
     
     footer p {
-    color: white;
+        color: black;
     }
