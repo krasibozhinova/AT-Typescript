@@ -21,8 +21,8 @@ console.log(`Is the length of variable "text" greater than 10 - ${isLong}`);
 // Step 2: Declare a variable `isPositive` and check if `number` is greater than 0.
 // Step 3: Log the result
 
-let anyNumber: number = 10;
-let isPositive: boolean = anyNumber > 0;
+let number: number = 10;
+let isPositive: boolean = number > 0;
 console.log(`Is the number positive - ${isPositive}`);
 
 // Exercise 4: Determine if a number is negative or zero
