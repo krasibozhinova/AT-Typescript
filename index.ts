@@ -83,3 +83,5 @@ type PersonInfoType = string | number;
 
 const personNameInf: PersonInfoType = "Ivan";
 const personAgeInfo: PersonInfoType = 25;
+
+export {};
