@@ -28,10 +28,10 @@ console.log("The passed parameter is:", convertToCentimeters(10));
 // If height is not provided, assume the shape is a square.
 
 function calculateArea(width: number, height?: number): number {
-  if (height === undefined) {
-    return width * width;
-  } else {
+  if (height) {
     return width * height;
+  } else {
+    return width * width;
   }
 }
 
