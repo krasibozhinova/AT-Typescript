@@ -85,3 +85,14 @@ const personNameInf: PersonInfoType = "Ivan";
 const personAgeInfo: PersonInfoType = 25;
 
 export {};
+
+type Status = "approed" | "rejected" | "pending" | "fulfiled";
+
+const currentStatus: Status = "fulfiled";
+
+type PersonData = {
+  name: string;
+  lastName: string;
+  age: number;
+  city?: "Sofia" | "Plovdiv" | "Varna";
+};
