@@ -1,0 +1,10 @@
+var headingOne = document.getElementById("title");
+headingOne.textContent = "Welcome to DOM Manipulations";
+var divEl = document.querySelector("p");
+divEl.style.color = "blue";
+var listItems = document.getElementsByTagName("li");
+listItems[0].textContent = "Apple";
+listItems[1].textContent = "Orange";
+listItems[2].textContent = "Mango";
+var learnBtn = document.querySelector(".learn button");
+learnBtn.style.border = "1px solid red";
