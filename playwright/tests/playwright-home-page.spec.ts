@@ -1,60 +1,65 @@
 import { test, expect } from "@playwright/test";
 
-test("Has logo exist", async ({ page }) => {
-  const url = process.env.BASE_URL as string;
-  await page.goto(url);
+test.describe("Playwright home page testin", () => {
+  test.beforeEach("Navigate to the home page", async ({ page }) => {
+    const url = process.env.BASE_URL as string;
+    await page.goto(url, { timeout: 60000 });
+  });
 
-  const logo = page.getByAltText("Playwright logo").first();
+  test("Has logo exist", async ({ page }) => {
+    const logo = page.getByAltText("Playwright logo").first();
 
-  await expect(logo).toBeVisible();
-});
-// Playwright enables reliable end-to-end testing for modern web apps.
+    await expect(logo).toBeVisible();
+  });
+  // Playwright enables reliable end-to-end testing for modern web apps.
 
-test("Has heading exist", async ({ page }) => {
-  const url = process.env.BASE_URL as string;
-  await page.goto(url);
+  test("Has heading exist", async ({ page }) => {
+    // locate heading one by locator tag name
+    const headingTitle = page.locator("h1");
+    // log in the test results located element value
+    console.log((await headingTitle.innerText()).valueOf());
+    await expect(headingTitle).toBeVisible();
+  });
 
-  // locate heading one by locator tag name
-  const headingTitle = page.locator("h1");
-  // log in the test results located element value
-  console.log((await headingTitle.innerText()).valueOf());
-  await expect(headingTitle).toBeVisible();
-});
+  test("Have nav links exist", async ({ page }) => {
+    // locate nav link Docs by role and text
+    const docsLink = page.getByRole("link", { name: "Docs" });
+    const apiLink = page.getByRole("link", { name: "API" });
 
-test("Have nav links exist", async ({ page }) => {
-  const url = process.env.BASE_URL as string;
-  await page.goto(url);
+    await expect(docsLink).toBeVisible();
+    await expect(apiLink).toBeVisible();
+  });
 
-  // locate nav link Docs by role and text
-  const docsLink = page.getByRole("link", { name: "Docs" });
-  const apiLink = page.getByRole("link", { name: "API" });
+  test("Click Community nav link and check the path", async ({ page }) => {
+    // locate nav link Community by role and text
+    const communityLink = page.getByRole("link", { name: "Community" });
+    // click the located element
+    await communityLink.click();
+    // expect the current page to have passed url
+    await expect(page).toHaveURL("https://playwright.dev/community/welcome");
 
-  await expect(docsLink).toBeVisible();
-  await expect(apiLink).toBeVisible();
-});
+    const headingTwo = page.getByRole("heading", { name: "Ambassadors" });
+    await expect(headingTwo).toBeVisible();
+  });
 
-test("Click Community nav link and check the path", async ({ page }) => {
-  const url = process.env.BASE_URL as string;
-  await page.goto(url);
+  test("Select Playwright env from the list", async ({ page }) => {
+    const envInitial = page.getByRole("button", { name: "Node.js" });
 
-  // locate nav link Community by role and text
-  const communityLink = page.getByRole("link", { name: "Community" });
-  // click the located element
-  await communityLink.click();
-  // expect the current page to have passed url
-  await expect(page).toHaveURL("https://playwright.dev/community/welcome");
+    await envInitial.hover();
 
-  const headingTwo = page.getByRole("heading", { name: "Ambassadors" });
-  await expect(headingTwo).toBeVisible();
-});
+    const envList = page.locator(".dropdown__menu");
+    await expect(envList).toBeVisible();
 
-// logosList_zAAF
-test("Check if logos list exist", async ({ page }) => {
-  const url = process.env.BASE_URL as string;
-  await page.goto(url);
+    const listItem = page.locator("ul.dropdown__menu a").getByText("Python");
+    await listItem.click();
+    await expect(page).toHaveURL("https://playwright.dev/python/");
+  });
 
-  // locate logos list by locator class name syntax
-  const logosListItems = page.locator("ul.logosList_zAAF li");
-  // expect the count of list items
-  await expect(logosListItems).toHaveCount(9);
+  // logosList_zAAF
+  test("Check if logos list exist", async ({ page }) => {
+    // locate logos list by locator class name syntax
+    const logosListItems = page.locator("ul.logosList_zAAF li");
+    // expect the count of list items
+    await expect(logosListItems).toHaveCount(9);
+  });
 });
